@@ -76,14 +76,14 @@ using BlazorCRUD.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\Pages\Employees.razor"
+#line 2 "C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\Pages\EmployeeEditor.razor"
 using BlazorCRUD.Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/employees")]
-    public partial class Employees : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/employee/{Id}")]
+    public partial class EmployeeEditor : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -91,36 +91,42 @@ using BlazorCRUD.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 40 "C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\Pages\Employees.razor"
+#line 20 "C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\Pages\EmployeeEditor.razor"
        
-    private List<EmployeeModel> employees;
+    [Parameter]
+    public String Id { get; set; }
+
+    private EmployeeModel employee { get; set; }
 
     protected override void OnInitialized()
     {
-        employees = EmployeeService.GetEmployees();
+        if (!string.IsNullOrEmpty(Id) & Id == "0")
+        {
+            employee = new EmployeeModel();
+        }else
+        {
+            employee = EmployeeService.GetEmployee(Guid.Parse(Id));
+        }
     }
 
-    private void OnDelete(Guid employeeId)
+    private void OnSubmitForm()
     {
-        EmployeeService.DeleteEmployee(employeeId);
-    }
+        if (employee.Id == Guid.Empty)
+        {
+            EmployeeService.AddEmployee(employee);
+        }else
+        {
+            EmployeeService.UpdateEmployee(employee);
+        }
 
-    private void OnEdit(Guid employeeId)
-    {
-        NavigationManager.NavigateTo($"employee/{employeeId}");
+        NavigationManager.NavigateTo("employees");
     }
-
-    private void OnAdd()
-    {
-        NavigationManager.NavigateTo("employee/0");
-    }
-
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IEmployeeService EmployeeService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

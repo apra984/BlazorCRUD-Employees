@@ -51,3 +51,5 @@ C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\obj\Debug\netcoreapp3.
 C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\obj\Debug\netcoreapp3.1\BlazorCRUD.csproj.CopyComplete
 C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Employees.razor.g.cs
 C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\obj\Debug\netcoreapp3.1\Razor\Pages\Employees.razor.g.cs
+C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EmployeeEditor.razor.g.cs
+C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\obj\Debug\netcoreapp3.1\Razor\Pages\EmployeeEditor.razor.g.cs
