@@ -1,31 +1,41 @@
 ﻿@page "/employees"
 @using BlazorCRUD.Data
 @inject IEmployeeService EmployeeService;
+@inject NavigationManager NavigationManager;
 
-<h3>Employees</h3>
-<table class="table">
-    <thead>
-    <tr>
-        <td>Id</td>
-        <td>Name</td>
-        <td>Age</td>
-    </tr>
-    </thead>
-    <tbody>
-        @foreach(var employee in employees)
-        {
-            <tr>
-                <td>@employee.Id</td>
-                <td>@employee.Name</td>
-                <td>@employee.Age</td>
-                <td>
-                    <a href="employee/@employee.Id"></a>
-                </td>
+<h3>
+    Employee Register
+</h3>
+    <table class="table">
+        <thead>
+            <tr class="font-weight-bold">
+                <td>Id</td>
+                <td>Name</td>
+                <td>Age</td>
+                <td><button class="btn btn-primary float-right" @onclick="@OnAdd">Add employee</button></td>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var employee in employees)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.Name</td>
+                    <td>@employee.Age</td>
+                    <td>
+                        <div class="float-right btn-group">
+                            <button class="btn btn-outline-primary mr-1" @onclick="@(e => OnEdit(employee.Id))">
+                                Edit
+                            </button>
+                            <button class="btn btn-outline-danger" @onclick="@(e => OnDelete(employee.Id))">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
 @code {
     private List<EmployeeModel> employees;
@@ -33,6 +43,21 @@
     protected override void OnInitialized()
     {
         employees = EmployeeService.GetEmployees();
+    }
+
+    private void OnDelete(Guid employeeId)
+    {
+        EmployeeService.DeleteEmployee(employeeId);
+    }
+
+    private void OnEdit(Guid employeeId)
+    {
+        NavigationManager.NavigateTo($"employee/{employeeId}");
+    }
+
+    private void OnAdd()
+    {
+        NavigationManager.NavigateTo("employee/0");
     }
 
 }
