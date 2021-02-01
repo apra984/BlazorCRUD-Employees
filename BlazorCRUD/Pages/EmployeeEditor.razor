@@ -1,0 +1,49 @@
+﻿@page "/employee/{Id}"
+@using BlazorCRUD.Data
+@inject NavigationManager NavigationManager
+@inject IEmployeeService EmployeeService
+
+<h3>Employee Editor</h3>
+<EditForm Model="employee">
+    <div class="form-group">
+        <label>Id</label>
+        <input id="id" name="id" class="form-control" readonly value="@employee.Id" />
+        <label>Name</label>
+        <InputText id="name" name="name" class="form-control" @bind-Value="employee.Name"></InputText>
+        <label>Age</label>
+        <input id="age" class="form-control" name="age" @bind="@employee.Age" />
+    </div>
+    <button class="btn btn-outline-primary float-right" type="submit" @onclick="@OnSubmitForm">Submit</button>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public String Id { get; set; }
+
+    private EmployeeModel employee { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrEmpty(Id) & Id == "0")
+        {
+            employee = new EmployeeModel();
+        }else
+        {
+            employee = EmployeeService.GetEmployee(Guid.Parse(Id));
+        }
+    }
+
+    private void OnSubmitForm()
+    {
+        if (employee.Id == Guid.Empty)
+        {
+            EmployeeService.AddEmployee(employee);
+        }else
+        {
+            EmployeeService.UpdateEmployee(employee);
+        }
+
+        NavigationManager.NavigateTo("employees");
+    }
+}
