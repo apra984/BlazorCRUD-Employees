@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorCRUD.Shared
+namespace BlazorCRUD.Pages
 {
     #line hidden
     using System;
@@ -75,7 +75,15 @@ using BlazorCRUD.Shared;
 #line default
 #line hidden
 #nullable disable
-    public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\Pages\Employees.razor"
+using BlazorCRUD.Data;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/employees")]
+    public partial class Employees : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -83,20 +91,20 @@ using BlazorCRUD.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 33 "C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\Shared\NavMenu.razor"
+#line 27 "C:\Users\Akash Prakash\source\repos\BlazorCRUD\BlazorCRUD\Pages\Employees.razor"
        
-    private bool collapseNavMenu = true;
+    private List<EmployeeModel> employees;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    protected override void OnInitialized()
     {
-        collapseNavMenu = !collapseNavMenu;
+        employees = EmployeeService.GetEmployees();
     }
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IEmployeeService EmployeeService { get; set; }
     }
 }
 #pragma warning restore 1591
