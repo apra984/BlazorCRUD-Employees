@@ -1,6 +1,15 @@
 pipeline{
 
 agent any
+  parameters{
+    choice(name:'VERSION', choices: ['1.1.2', '6.96.2']
+  }
+  environment{
+  //credentials
+  }
+  tools{
+    //gradle, maven
+  }
   
   stages{
   
@@ -11,6 +20,17 @@ agent any
       
   }
         stage("test"){
+          when{
+          
+            expression{
+            //specify branch
+            
+            }
+          
+          }
+          
+          
+          
       steps{
         echo 'test app'
          }
@@ -26,6 +46,11 @@ agent any
     }
 
 }
+
+post{
+//have always and failure blocks
+}
+
 
 node{
 //groovy script
