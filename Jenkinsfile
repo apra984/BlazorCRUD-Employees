@@ -15,7 +15,7 @@ agent any
   
     stage("build"){
       steps{
-          sh "msbuild.exe ${workspace}\\BlazorCRUD.sln /nologo /nr:false  /p:platform=\"x64\" /p:configuration=\"release\" /t:clean;restore;rebuild"
+          sh "msbuild.exe ${workspace}\\ BlazorCRUD.sln /nologo /nr:false  /p:platform=\"x64\" /p:configuration=\"release\" /t:clean;restore;rebuild"
       }
       
   }
