@@ -4,12 +4,12 @@ agent any
   parameters{
     choice(name:'VERSION', choices: ['1.1.2', '6.96.2'])
   }
-  environment{
+  //environment{
   //credentials
-  }
-  tools{
+  //}
+  //tools{
     //gradle, maven
-  }
+  //}
   
   stages{
   
@@ -22,7 +22,7 @@ agent any
         stage("test"){
           when{
           
-            expression{
+            //expression{
             //specify branch
             
             }
