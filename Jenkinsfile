@@ -46,9 +46,9 @@ agent any
     }
 }
 
-post{
+//post{
 //have always and failure blocks
-}
+//}
 
 
 node{
