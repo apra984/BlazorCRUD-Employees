@@ -2,7 +2,7 @@ pipeline{
 
 agent any
   parameters{
-    choice(name:'VERSION', choices: ['1.1.2', '6.96.2']
+    choice(name:'VERSION', choices: ['1.1.2', '6.96.2'])
   }
   environment{
   //credentials
