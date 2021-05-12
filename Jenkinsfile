@@ -20,14 +20,14 @@ agent any
       
   }
         stage("test"){
-          when{
+          //when{
           
             //expression{
             //specify branch
             
             
-          
-          }
+        //}
+          //}
           
           
           
